@@ -1,4 +1,4 @@
-FROM codacy/ci-base
+FROM codacy/ci-base:latest
 
 LABEL maintainer="Daniel Reigada (dreigada) <daniel@codacy.com>"
 
