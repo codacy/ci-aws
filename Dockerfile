@@ -1,4 +1,4 @@
-FROM codacy/ci-base:2018.08.3
+FROM codacy/ci-base:1.0.1
 
 LABEL maintainer="Codacy <team@codacy.com>"
 
