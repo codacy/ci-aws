@@ -1,2 +1,2 @@
-awscli==1.15.81
-sceptre==1.4.0
+awscli==1.16.88
+sceptre==2.0.2
