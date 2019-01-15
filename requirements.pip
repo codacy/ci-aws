@@ -1,3 +1,5 @@
-awscli==1.16.88
-sceptre==2.0.2
+botocore==1.12.79
+PyYaml>=4.2b1,<5.0
 ssm2eb==0.1.16
+sceptre==2.0.2
+awscli==1.16.88
