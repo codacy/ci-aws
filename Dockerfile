@@ -10,8 +10,7 @@ COPY requirements.pip .
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
 
-RUN apk add --no-cache \
-    python3 && \
+RUN apk add --no-cache python3 m4 && \
     pip3 install --upgrade pip setuptools && \
     pip3 --no-cache-dir install -r requirements.pip && \
     sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS && \
