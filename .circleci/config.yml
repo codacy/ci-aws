@@ -102,17 +102,6 @@ workflows:
       - build:
           requires:
             - checkout
-      - manual_approval:
-          type: approval
-          requires:
-            - build
-      - publish_versioned:
-          requires:
-            - manual_approval
-          context: CodacyDocker
-      - tag_version:
-          requires:
-            - publish_versioned
 
   publish_master:
     jobs:
