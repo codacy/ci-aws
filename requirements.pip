@@ -1,6 +1,8 @@
-botocore==1.12.79
-PyYaml>=4.2b1,<5.0
+botocore==1.12.102
+awscli==1.16.112
+boto3==1.9.102
 ssm2eb==0.1.16
+PyYaml>=4.2b1,<5.0 # because of sceptre
+colorama==0.3.7 # because of sceptre
 sceptre==2.0.2
-awscli==1.16.88
-boto3==1.9.86
+aws-amicleaner==0.2.2
