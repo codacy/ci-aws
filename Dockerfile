@@ -21,8 +21,10 @@ RUN apk add --no-cache python3 m4 && \
     curl -L "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz" | tar -zxf - && \
     mv linux-amd64/helm /usr/local/bin/helm && \    
     chmod +x /usr/local/bin/helm && \
-    curl -L "https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" > /usr/local/bin/kubectl && \
+    curl -Lo /usr/local/bin/kubectl "https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
     chmod +x /usr/local/bin/kubectl && \
+    curl -Lo /usr/local/bin/aws-iam-authenticator "https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator" && \
+    chmod +x /usr/local/bin/aws-iam-authenticator && \
     rm -f packer_${PACKER_VERSION}_linux_amd64.zip && \
     rm -rf /var/cache/apk/* \
     rm -rf *
