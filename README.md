@@ -1,6 +1,6 @@
 # ci-aws
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f4b87e390a774164ae1264ca2f59b7c3)](https://www.codacy.com/project/Codacy/ci-aws/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codacy/ci-aws&amp;utm_campaign=Badge_Grade_Dashboard)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f4b87e390a774164ae1264ca2f59b7c3)](https://www.codacy.com/gh/codacy/ci-aws?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codacy/ci-aws&amp;utm_campaign=Badge_Grade)
 [![](https://images.microbadger.com/badges/version/codacy/ci-aws.svg)](https://microbadger.com/images/codacy/ci-aws "Get your own version badge on microbadger.com")
 
 Docker image to be used in Continuous Integration environments such as CircleCI, with tools to interact with AWS
