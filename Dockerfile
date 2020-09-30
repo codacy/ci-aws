@@ -9,7 +9,6 @@ ENV PACKER_SHA256SUM=5e51808299135fee7a2e664b09f401b5712b5ef18bd4bad5bc50f4dcd8b
 ENV HELM_VERSION=v3.3.1
 ENV HELM_SSM_VERSION=3.0.1
 ENV KUBECTL_VERSION=v1.19.2
-ENV AWS_CLI_VERSION=2.0.52
 
 COPY requirements.pip .
 
@@ -27,9 +26,6 @@ RUN apk add --no-cache python3 m4 && \
     sed -i '/.*linux_amd64.zip/!d' terraform_${TERRAFORM_VERSION}_SHA256SUMS && \
     sha256sum -cs terraform_${TERRAFORM_VERSION}_SHA256SUMS && \
     unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /bin && \
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip && \
-    ./aws/install && \
     curl "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz" | tar -zxf - && \
     mv linux-amd64/helm /usr/local/bin/helm && \    
     chmod +x /usr/local/bin/helm && \
