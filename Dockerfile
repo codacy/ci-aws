@@ -3,7 +3,7 @@ FROM codacy/ci-base:2.1.1
 LABEL maintainer="Codacy <team@codacy.com>"
 
 ENV PACKER_VERSION=1.3.2
-ENV TERRAFORM_VERSION=0.12.28
+ENV TERRAFORM_VERSION=0.14.7
 ENV PACKER_SHA256SUM=5e51808299135fee7a2e664b09f401b5712b5ef18bd4bad5bc50f4dcd8b149a1
 # Bumping helm minor version is a breaking change
 ENV HELM_VERSION=v3.3.1
