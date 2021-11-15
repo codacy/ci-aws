@@ -8,11 +8,15 @@ ENV PACKER_SHA256SUM=5e51808299135fee7a2e664b09f401b5712b5ef18bd4bad5bc50f4dcd8b
 # Bumping helm minor version is a breaking change
 ENV HELM_VERSION=v3.3.1
 ENV HELM_SSM_VERSION=3.1.0
+ENV HELM_PUSH_VERSION=0.9.0
+
 ENV KUBECTL_VERSION=v1.19.2
-ENV PYTHON3_VERSION=3.7.10-r0
 ENV M4_VERSION=1.4.18-r1
+
+ENV PYTHON3_VERSION=3.7.10-r0
 ENV PIP_VERSION=21.3.1
 ENV SETUPTOOLS_VERSION=59.1.0
+
 ENV SOPS_VERSION=3.7.1-r0
 ENV SSM_PARAMETER_MANAGER_VERSION=0.0.5
 
@@ -37,7 +41,7 @@ RUN apk add "sops=${SOPS_VERSION}" --no-cache --repository https://dl-3.alpineli
     mv linux-amd64/helm /usr/local/bin/helm && \    
     chmod +x /usr/local/bin/helm && \
     helm plugin install https://github.com/codacy/helm-ssm/releases/download/${HELM_SSM_VERSION}/helm-ssm-linux.tgz && \
-    helm plugin install https://github.com/chartmuseum/helm-push && \
+    helm plugin install https://github.com/chartmuseum/helm-push --version ${HELM_PUSH_VERSION} && \
     curl -Lo /usr/local/bin/kubectl "https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
     chmod +x /usr/local/bin/kubectl && \
     curl -Lo /usr/local/bin/aws-iam-authenticator "https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator" && \
