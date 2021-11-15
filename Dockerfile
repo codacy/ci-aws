@@ -9,6 +9,12 @@ ENV PACKER_SHA256SUM=5e51808299135fee7a2e664b09f401b5712b5ef18bd4bad5bc50f4dcd8b
 ENV HELM_VERSION=v3.3.1
 ENV HELM_SSM_VERSION=3.1.0
 ENV KUBECTL_VERSION=v1.19.2
+ENV PYTHON3_VERSION=3.7.10-r0
+ENV M4_VERSION=1.4.18-r1
+ENV PIP_VERSION=21.3.1
+ENV SETUPTOOLS_VERSION=59.1.0
+ENV SOPS_VERSION=3.7.1-r0
+ENV SSM_PARAMETER_MANAGER_VERSION=0.0.5
 
 COPY requirements.pip .
 
@@ -17,8 +23,9 @@ ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERS
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip ./
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS ./
 
-RUN apk add --no-cache python3 m4 && \
-    pip3 install --upgrade pip setuptools && \
+RUN apk add "sops=${SOPS_VERSION}" --no-cache --repository https://dl-3.alpinelinux.org/alpine/edge/testing/ && \
+    apk add --no-cache "python3=${PYTHON3_VERSION}" "m4=${M4_VERSION}" && \
+    pip3 install --upgrade pip==${PIP_VERSION} setuptools==${SETUPTOOLS_VERSION} && \
     pip3 --no-cache-dir install --use-feature=2020-resolver -r requirements.pip && \
     sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS && \
     sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS && \
@@ -35,6 +42,9 @@ RUN apk add --no-cache python3 m4 && \
     chmod +x /usr/local/bin/kubectl && \
     curl -Lo /usr/local/bin/aws-iam-authenticator "https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator" && \
     chmod +x /usr/local/bin/aws-iam-authenticator && \
+    curl -L https://github.com/codacy/ssm-parameter-manager/releases/download/${SSM_PARAMETER_MANAGER_VERSION}/ssm-parameter-manager -o ssm-parameter-manager && \
+    mv ssm-parameter-manager /usr/local/bin/ssm-parameter-manager && \
+    chmod +x /usr/local/bin/ssm-parameter-manager && \
     rm -f packer_${PACKER_VERSION}_linux_amd64.zip terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
     rm -rf /var/cache/apk/* \
-    rm -rf *
+    rm -rf -- *
