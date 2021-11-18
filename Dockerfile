@@ -18,7 +18,7 @@ ENV PIP_VERSION=21.3.1
 ENV SETUPTOOLS_VERSION=59.1.0
 
 ENV SOPS_VERSION=3.7.1-r0
-ENV SSM_PARAMETER_MANAGER_VERSION=0.0.5
+ENV SSM_PARAMETER_MANAGER_VERSION=0.0.6
 
 COPY requirements.pip .
 
@@ -46,7 +46,7 @@ RUN apk add "sops=${SOPS_VERSION}" --no-cache --repository https://dl-3.alpineli
     chmod +x /usr/local/bin/kubectl && \
     curl -Lo /usr/local/bin/aws-iam-authenticator "https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator" && \
     chmod +x /usr/local/bin/aws-iam-authenticator && \
-    curl -L https://github.com/codacy/ssm-parameter-manager/releases/download/${SSM_PARAMETER_MANAGER_VERSION}/ssm-parameter-manager -o ssm-parameter-manager && \
+    curl -L https://github.com/codacy/ssm-parameter-manager/releases/download/${SSM_PARAMETER_MANAGER_VERSION}/ssm-parameter-manager_linux_amd64 -o ssm-parameter-manager && \
     mv ssm-parameter-manager /usr/local/bin/ssm-parameter-manager && \
     chmod +x /usr/local/bin/ssm-parameter-manager && \
     rm -f packer_${PACKER_VERSION}_linux_amd64.zip terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
