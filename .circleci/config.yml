@@ -3,7 +3,8 @@ version: 2
 # Re-usable blocks to reduce boilerplate in job definitions.
 references:
   default_machine_job: &default_machine_job
-    machine: true
+    machine:
+      image: ubuntu-2004:202201-02
     working_directory: ~/workdir
 
   set_version_env_variable: &set_version_env_variable
