@@ -21,6 +21,7 @@ ENV SOPS_VERSION=3.7.3-r1
 ENV SSM_PARAMETER_MANAGER_VERSION=0.2.1
 
 COPY requirements.pip .
+COPY ./scripts /scripts
 
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./

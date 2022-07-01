@@ -33,6 +33,7 @@ jobs:
             - workdir/Makefile
             - workdir/Dockerfile
             - workdir/requirements.pip
+            - workdir/scripts
   build:
     <<: *default_machine_job
     steps:
