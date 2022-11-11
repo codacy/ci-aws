@@ -56,7 +56,7 @@ class CircleCIApi:
         Check if the workflow can start by checking if there are
         any other workflows for this project/branch running
         """
-        pipelines = [item for item in self.pipelines(project_slug) if "branch" in item["vcs"] and item["vcs"]["branch"] == branch]
+        pipelines = [item for item in self.pipelines(project_slug) if "vcs" in item and "branch" in item["vcs"] and item["vcs"]["branch"] == branch]
         for pipeline in pipelines:
             workflows = [item for item in self.workflows(pipeline["id"]) if item["id"] != current_workflow_id]
             for workflow in workflows:
