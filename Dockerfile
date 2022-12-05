@@ -6,7 +6,7 @@ ENV PACKER_VERSION=1.3.2
 ENV TERRAFORM_VERSION=1.1.9
 ENV PACKER_SHA256SUM=5e51808299135fee7a2e664b09f401b5712b5ef18bd4bad5bc50f4dcd8b149a1
 # Bumping helm minor version is a breaking change
-ENV HELM_VERSION=v3.3.1
+ENV HELM_VERSION=v3.10.2
 ENV HELM_SSM_VERSION=3.2.2
 ENV HELM_PUSH_VERSION=0.9.0
 
@@ -41,7 +41,8 @@ RUN apk add "sops=${SOPS_VERSION}" --no-cache --repository https://dl-3.alpineli
     curl "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz" | tar -zxf - && \
     mv linux-amd64/helm /usr/local/bin/helm && \    
     chmod +x /usr/local/bin/helm && \
-    helm plugin install https://github.com/codacy/helm-ssm/releases/download/${HELM_SSM_VERSION}/helm-ssm-linux.tgz && \
+    wget "https://github.com/codacy/helm-ssm/releases/download/${HELM_SSM_VERSION}/helm-ssm-linux.tgz" && \
+    mkdir ./helm-ssm && tar -xzf helm-ssm-linux.tgz -C ./helm-ssm && helm plugin install ./helm-ssm && \
     helm plugin install https://github.com/chartmuseum/helm-push --version ${HELM_PUSH_VERSION} && \
     curl -Lo /usr/local/bin/kubectl "https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
     chmod +x /usr/local/bin/kubectl && \
