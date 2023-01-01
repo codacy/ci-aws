@@ -55,3 +55,4 @@ git-tag                        tag the current commit with the next version and 
 push-docker-image              push the docker image to the registry (DOCKER_USER and DOCKER_PASS mandatory)
 push-latest-docker-image       push the docker image with the "latest" tag to the registry (DOCKER_USER and DOCKER_PASS mandatory)
 ```
+test
