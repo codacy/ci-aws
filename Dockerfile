@@ -15,9 +15,11 @@ ENV M4_VERSION=1.4.18-r2
 
 ENV PYTHON3_VERSION=3.9.16-r0
 ENV PIP_VERSION=22.0.4
+ENV YQ_VERSION=4.14.1-r2
+ENV PY3PIP_VERSION=20.3.4-r1
 ENV SETUPTOOLS_VERSION=59.1.0
 
-ENV SOPS_VERSION=3.7.3-r9
+ENV SOPS_VERSION=3.7.3-r11
 ENV SSM_PARAMETER_MANAGER_VERSION=0.2.1
 
 COPY requirements.pip .
@@ -29,7 +31,7 @@ ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TE
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS ./
 
 RUN apk add "sops=${SOPS_VERSION}" --no-cache --repository https://dl-3.alpinelinux.org/alpine/edge/testing/ && \
-    apk add --no-cache "python3=${PYTHON3_VERSION}" "m4=${M4_VERSION}" py3-pip&& \
+    apk add --no-cache "python3=${PYTHON3_VERSION}" "m4=${M4_VERSION}" py3-pip=${PY3PIP_VERSION} yq=${YQ_VERSION}&& \
     pip3 install --upgrade pip==${PIP_VERSION} setuptools==${SETUPTOOLS_VERSION} && \
     pip3 --no-cache-dir install -r requirements.pip --ignore-installed packaging&& \
     sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS && \
