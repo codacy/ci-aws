@@ -89,9 +89,14 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "df:83:d7:c7:d5:79:06:c2:3b:d1:fd:e2:a3:d1:12:c5"
-      - deploy:
+      - run:
           name: Tag git repository
-          command: make git-tag
+          command: |
+            if [[ $(netstat -tnlp | grep -F 'circleci-agent') ]] ; then
+              echo "Command skipped during 'Rerun job with SSH'"
+              exit 0;
+            fi
+            make git-tag
 
 workflows:
   version: 2
