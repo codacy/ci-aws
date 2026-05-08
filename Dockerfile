@@ -35,7 +35,6 @@ RUN apk add "sops=${SOPS_VERSION}" --no-cache --repository https://dl-3.alpineli
     pip3 install --upgrade pip==${PIP_VERSION} setuptools==${SETUPTOOLS_VERSION} && \
     pip3 --no-cache-dir install -r requirements.pip packaging && \
     pip3 install wheel==0.44.0 && \
-    pip3 install --upgrade pyyaml==5.4.1 --ignore-installed && \
     sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS && \
     sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS && \
     unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin && \
