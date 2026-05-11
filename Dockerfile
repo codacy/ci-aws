@@ -34,7 +34,7 @@ RUN apk add "sops=${SOPS_VERSION}" --no-cache --repository https://dl-3.alpineli
     apk add --no-cache "python3=${PYTHON3_VERSION}" "m4=${M4_VERSION}" py3-pip=${PY3PIP_VERSION} yq=${YQ_VERSION}&& \
     pip3 install --upgrade pip==${PIP_VERSION} wheel==0.47.0 setuptools==70.2.0 --ignore-installed && \
     pip3 install --upgrade --no-build-isolation  pyyaml==5.4.1 && \
-    pip install requests-aws4auth==1.1.2 --no-deps && \
+    pip3 install requests-aws4auth==1.1.2 --no-deps && \
     pip3 --no-cache-dir install -r requirements.pip --ignore-installed && \
     sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS && \
     sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS && \
