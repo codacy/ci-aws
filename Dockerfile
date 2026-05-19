@@ -32,7 +32,7 @@ ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TE
 
 RUN apk add "sops=${SOPS_VERSION}" --no-cache --repository https://dl-3.alpinelinux.org/alpine/edge/community/ && \
     apk add --no-cache "python3=${PYTHON3_VERSION}" "m4=${M4_VERSION}" py3-pip=${PY3PIP_VERSION} yq=${YQ_VERSION}&& \
-    pip3 install --upgrade pip==${PIP_VERSION} wheel==0.47.0 setuptools==70.2.0 --ignore-installed && \
+    pip3 install --upgrade pip==${PIP_VERSION} wheel==0.47.0 setuptools==${SETUPTOOLS_VERSION} --ignore-installed && \
     pip3 install --upgrade --no-build-isolation awscli==1.25.9 botocore==1.27.9 sceptre==3.1.0 aws-amicleaner==0.2.2  pyyaml==5.4.1 && \
     pip3 --no-cache-dir install -r requirements.pip --ignore-installed && \
     sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS && \
