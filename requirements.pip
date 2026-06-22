@@ -4,4 +4,4 @@ ssm2eb==0.5.1
 colorama==0.3.9
 cfn-lint==0.28.4
 ytool==0.4.2
-ordered-set==4.0.2
+ordered-set==4.1.0
