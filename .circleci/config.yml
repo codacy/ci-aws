@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 # Re-usable blocks to reduce boilerplate in job definitions.
 references:
