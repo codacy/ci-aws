@@ -10,7 +10,7 @@ ENV HELM_VERSION=v3.10.2
 ENV HELM_SSM_VERSION=3.3.0
 ENV HELM_PUSH_VERSION=0.10.3
 
-ENV KUBECTL_VERSION=v1.23.16
+ENV KUBECTL_VERSION=v1.35.10
 ENV M4_VERSION=1.4.18-r2
 
 ENV PYTHON3_VERSION=3.9.18-r0
@@ -19,7 +19,7 @@ ENV YQ_VERSION=4.14.1-r2
 ENV PY3PIP_VERSION=20.3.4-r1
 ENV SETUPTOOLS_VERSION=70.2.0
 
-ENV SOPS_VERSION=3.12.2-r1
+ENV SOPS_VERSION=3.12.2
 ENV SSM_PARAMETER_MANAGER_VERSION=0.2.4
 
 COPY requirements.pip .
@@ -30,7 +30,7 @@ ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERS
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip ./
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS ./
 
-RUN apk add "sops=${SOPS_VERSION}" --no-cache --repository https://dl-3.alpinelinux.org/alpine/edge/community/ && \
+RUN apk add "sops~${SOPS_VERSION}" --no-cache --repository https://dl-3.alpinelinux.org/alpine/edge/community/ && \
     apk add --no-cache "python3=${PYTHON3_VERSION}" "m4=${M4_VERSION}" py3-pip=${PY3PIP_VERSION} yq=${YQ_VERSION}&& \
     pip3 install --upgrade pip==${PIP_VERSION} wheel==0.47.0 setuptools==${SETUPTOOLS_VERSION} --ignore-installed && \
     pip3 install --upgrade --no-build-isolation awscli==1.35.24 botocore==1.35.58 sceptre==4.5.3 aws-amicleaner==0.2.2 pyyaml==6.0.3 && \
@@ -47,7 +47,7 @@ RUN apk add "sops=${SOPS_VERSION}" --no-cache --repository https://dl-3.alpineli
     helm plugin install https://github.com/chartmuseum/helm-push --version ${HELM_PUSH_VERSION} && \
     wget "https://github.com/codacy/helm-ssm/releases/download/${HELM_SSM_VERSION}/helm-ssm-linux.tgz" && \
     mkdir ./helm-ssm && tar -xzf helm-ssm-linux.tgz -C ./helm-ssm && mv helm-ssm ~/.local/share/helm/plugins/ && \
-    curl -Lo /usr/local/bin/kubectl "https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
+    curl -Lo /usr/local/bin/kubectl "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
     chmod +x /usr/local/bin/kubectl && \
     curl -Lo /usr/local/bin/aws-iam-authenticator "https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator" && \
     chmod +x /usr/local/bin/aws-iam-authenticator && \
