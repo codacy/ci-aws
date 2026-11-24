@@ -10,7 +10,7 @@ ENV HELM_VERSION=v3.10.2
 ENV HELM_SSM_VERSION=3.3.0
 ENV HELM_PUSH_VERSION=0.10.3
 
-ENV KUBECTL_VERSION=v1.23.16
+ENV KUBECTL_VERSION=v1.35.10
 ENV M4_VERSION=1.4.18-r2
 
 ENV PYTHON3_VERSION=3.9.18-r0
@@ -47,7 +47,7 @@ RUN apk add "sops~${SOPS_VERSION}" --no-cache --repository https://dl-3.alpineli
     helm plugin install https://github.com/chartmuseum/helm-push --version ${HELM_PUSH_VERSION} && \
     wget "https://github.com/codacy/helm-ssm/releases/download/${HELM_SSM_VERSION}/helm-ssm-linux.tgz" && \
     mkdir ./helm-ssm && tar -xzf helm-ssm-linux.tgz -C ./helm-ssm && mv helm-ssm ~/.local/share/helm/plugins/ && \
-    curl -Lo /usr/local/bin/kubectl "https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
+    curl -Lo /usr/local/bin/kubectl "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
     chmod +x /usr/local/bin/kubectl && \
     curl -Lo /usr/local/bin/aws-iam-authenticator "https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator" && \
     chmod +x /usr/local/bin/aws-iam-authenticator && \
