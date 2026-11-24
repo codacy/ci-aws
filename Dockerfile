@@ -19,7 +19,7 @@ ENV YQ_VERSION=4.14.1-r2
 ENV PY3PIP_VERSION=20.3.4-r1
 ENV SETUPTOOLS_VERSION=70.2.0
 
-ENV SOPS_VERSION=3.12.2-r1
+ENV SOPS_VERSION=3.12.2
 ENV SSM_PARAMETER_MANAGER_VERSION=0.2.4
 
 COPY requirements.pip .
@@ -30,7 +30,7 @@ ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERS
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip ./
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS ./
 
-RUN apk add "sops=${SOPS_VERSION}" --no-cache --repository https://dl-3.alpinelinux.org/alpine/edge/community/ && \
+RUN apk add "sops~${SOPS_VERSION}" --no-cache --repository https://dl-3.alpinelinux.org/alpine/edge/community/ && \
     apk add --no-cache "python3=${PYTHON3_VERSION}" "m4=${M4_VERSION}" py3-pip=${PY3PIP_VERSION} yq=${YQ_VERSION}&& \
     pip3 install --upgrade pip==${PIP_VERSION} wheel==0.47.0 setuptools==${SETUPTOOLS_VERSION} --ignore-installed && \
     pip3 install --upgrade --no-build-isolation awscli==1.35.24 botocore==1.35.58 sceptre==4.5.3 aws-amicleaner==0.2.2 pyyaml==6.0.3 && \
